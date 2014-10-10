@@ -1,27 +1,88 @@
 html, body {
   /*padding: 50px;*/
+  background-color: #A7DBD8;
+  
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  height:100%;
   margin:0; 
+  overflow: hidden;
   padding:0;
 }
 
-a {
-  color: #00B7FF;
+.container{
+  margin: 0 auto;
+  text-align: center;
 }
 
-.container-fluid{
-  height:100%;
-  display:table;
-  width: 100%;
-  padding: 0;
-  margin-top: -6em;
-}
-.row-fluid {
-  height: 100%; display:table-cell; vertical-align: middle;
+.content{
+  float: left;
+  padding: 1em;
 }
 
-.centering {
-  float:none;
-  margin:0 auto;
+.margin-bottom{
+  margin-bottom: 20px;
+}
+
+input{
+  border-radius: 5px;
+  border: 1px solid #007E80;
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  outline: none;
+  padding: .3em .5em;
+}
+
+input.small{
+  width: 2em;
+}
+
+.action-basic{
+  background-color: #007E80;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 1.5em;
+  padding: .5em;
+  width: 10em;
+  box-shadow: 0px -5px rgba(0,0,0,.2)  inset;
+}
+
+.orange{
+  background-color: #F63700;
+}
+
+.content > span{
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 1.5em;
+  width: 100px;
+  padding: .2em;
+}
+
+.color-blue{
+  color: #007E80;
+}
+
+.color-orange{
+  color: #F63700;
+}
+
+.text-center{
+  text-align: center;
+}
+
+
+@media screen and (max-width: 468px){
+  .action-basic{
+    font-size: 1em;
+    width: 6em;
+  }
+
+  .action-basic i, .action-basic span{
+    display: block;
+  }
+
+  .content{
+    float: none;
+  }
 }

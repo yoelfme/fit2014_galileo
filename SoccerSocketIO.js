@@ -10,7 +10,8 @@ var Spark = require("spark-io");
 var board = new five.Board({
   io: new Spark({
     token: "7550da40ccf9ac697211eb17c031bbe7ac16a20a",
-    deviceId: "53ff72066667574837422067"
+    // /deviceId: "53ff6b066667574841281667"
+    deviceId:"53ff6c066667574819132467"
   })
 });
 
@@ -34,13 +35,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-
-app.io.route('left', function(){
-    console.log('izquierda!');
-    servo1.cw();  
-    servo2.ccw(); 
-});
-
 app.io.on('connection', function (socket){
     console.log('client: ',socket.id);
 });
@@ -66,11 +60,13 @@ board.on("ready", function() {
         type: "continuous"
     });
 
-    app.io.route('fwd', function( req ){    
-        servo1.cw();  
-        servo2.ccw(); 
+    app.io.route('fwd', function( req ){
+        fnPararServos(req.data.tiempo);
+        servo1.cw();
+        servo2.ccw();
     });
-    app.io.route('left', function( req ){    
+    app.io.route('right', function( req ){    
+        fnPararServos(req.data.tiempo);
         servo1.ccw();  
         servo2.ccw();
     });
@@ -78,16 +74,57 @@ board.on("ready", function() {
         servo1.stop();  
         servo2.stop();
     });
-    app.io.route('right', function( req ){    
+    app.io.route('left', function( req ){    
+        fnPararServos(req.data.tiempo);
         servo1.cw();  
         servo2.cw();
     });
+    
     app.io.route('back', function( req ){    
+        fnPararServos(req.data.tiempo);
         servo1.ccw();  
         servo2.cw(); 
     });
+
+    app.io.route('comando',function (req) {
+        var tiempo = req.data.tiempo;
+        var comando = req.data.comando;
+        console.log('Se recibio el comando: ' + comando);
+        switch(comando){
+            case 'adelante-atras':
+                servo1.cw();
+                servo2.ccw();
+                setTimeout(function () {
+                    servo1.ccw();  
+                    servo2.ccw();
+                    setTimeout(function () {
+                        servo1.cw();
+                        servo2.ccw();
+                        setTimeout(function () {
+                            fnPararServos2();
+                        },tiempo*1000);
+                    },1000);
+                },tiempo*1000)
+                break;
+        }
+    })
 });
 
-app.listen(3000, function(){
+
+function fnPararServos (tiempo) {
+    if (!isNaN(parseInt(tiempo))) {
+        setTimeout(function () {
+            servo1.stop();
+            servo2.stop();
+        },tiempo*1000);
+    };
+}
+
+function fnPararServos2 () {
+    servo1.stop();  
+    servo2.stop();
+}
+
+app.listen(8000, function(){
     console.log("Servidor Express.io listo.");
 });

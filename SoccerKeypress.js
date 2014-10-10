@@ -4,7 +4,8 @@ var keypress = require("keypress");
 var board = new five.Board({
   io: new Spark({
     token: "7550da40ccf9ac697211eb17c031bbe7ac16a20a",
-    deviceId: "53ff72066667574837422067"
+    //deviceId: "53ff6b066667574841281667"
+    deviceId:"53ff6c066667574819132467"
   })
 });
 

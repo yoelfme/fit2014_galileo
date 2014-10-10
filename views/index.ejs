@@ -3,33 +3,53 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title><%= title %></title>    
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    
   </head>
   <body>
-    <!-- <h1><%= title %></h1> -->
+    <h1 class="text-center"><%= title %></h1>
     <!-- <p>Welcome to <%= title %></p> -->
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="centering text-center">
-          <br />
-          <br />
-          <br />
-          <button id="fwd" type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-primary btn-lg">Up</button>
-          <br />
-          <br />
-          <button id="left" type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-primary btn-lg">Left</button>
-          <button id="stop" type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-danger btn-lg">Stop</button>
-          <button id="right" type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-primary btn-lg"
-          >Right</button>
-          <br />
-          <br />
-          <button id="back" type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-primary btn-lg">Down</button>
+    <div class="container">
+      <div class="content">
+        <h2>Comandos Básicos</h2>
+        <input id="tiempo" type="number" step="any" placeholder="Tiempo en segundos">
+        <input id="direccion" type="text" placeholder="Dir" class="small">
+        <span id="direccion-desc" class="color-orange">Parado!</span>
+        <div class="row margin-bottom">
+          <button id="fwd" type="button" class="action-basic">
+            <i class="fa fa-arrow-up"></i>
+            <span>
+              Adelante
+            </span>
+          </button>
         </div>
+        <div class="row margin-bottom">
+          <button id="left" type="button" class="action-basic">
+            <i class="fa fa-arrow-left"></i>
+            <span>Izquierda</span>
+          </button>
+          <button id="stop" type="button" class="action-basic orange">
+            <i class="fa fa-stop"></i>
+            <span>Para!</span>
+          </button>
+          <button id="right" type="button" class="action-basic">
+            <i class="fa fa-arrow-right"></i>
+            <span>Derecha</span>
+          </button>
+        </div>
+        <div class="row margin-bottom">
+          <button id="back" type="button" class="action-basic">
+            <i class="fa fa-arrow-down"></i>
+            <span>Atras</span>
+          </button>
+        </div>
+      </div>
+      <div class="content">
+        <h2>Comandos Especiales</h2>
+        <input id="comando" type="text" placeholder="Ingresa el comando">
+        <button type="button" class="action-basic" id="enviar-comando">Enviar!</button>
       </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
